@@ -33,7 +33,8 @@ class DiceTest {
 
 		// Roll a bunch of times and check values to give statistical confidence given the undeterministic
 		// nature of the random roll.
-		for (int rollCount = 0; rollCount < 100; rollCount++) {
+		int enoughRollsToProveThisCodeWorks = 100;
+		for (int rollCount = 0; rollCount < enoughRollsToProveThisCodeWorks; rollCount++) {
 			int rollResult = dice.roll();
 			// DEBUG: 
 			// System.out.println("Rolled " + rollResult);

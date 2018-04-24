@@ -126,7 +126,8 @@ class DiceStatisticsTest {
 		
 		// Roll the dice and validate results.
 		// Test it a bunch of times because this is not conclusive testing.
-		for (int i = 0; i < 1_000; i++) {
+		int enoughRollsToProveThisCodeWorks = 1_000;
+		for (int i = 0; i < enoughRollsToProveThisCodeWorks; i++) {
 			int rollResult = stats.rollOnce();
 			System.out.println("Rolled " + rollResult);
 

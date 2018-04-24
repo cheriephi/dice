@@ -47,8 +47,8 @@ public class DiceStatistics {
 		if (dice == null) { return null; }
 
 		Dice oldDice = diceArray[diceNum]; 
-		initStats();
 		diceArray[diceNum] = dice;
+		initStats();
 		
 		return oldDice;
 	}
@@ -58,6 +58,8 @@ public class DiceStatistics {
 	 */
 	public void initStats() {
 		// Re-create an empty counter. This gets adjusted as the values come in.
+		// NOTE: Resizing arrays is expensive. Would it be better to use a StringBuilder approach?
+		// (Initialize to a large size, double if size exceeded.)
 		totals = new int[0];
 	}
 	
@@ -91,7 +93,7 @@ public class DiceStatistics {
 	 * @param total
 	 */
 	private void updateStatistics(int total) {
-		if ((total + 1) <= totals.length)
+		if ((total) < totals.length)
 		{
 			totals[total]++;
 		} else {
@@ -99,7 +101,7 @@ public class DiceStatistics {
 
 			System.arraycopy(totals, 0, newTotals, 0, totals.length);
 			newTotals[total]++;
-			totals = newTotals.clone();
+			totals = newTotals;
 		}
 	}
 	
@@ -108,6 +110,8 @@ public class DiceStatistics {
 	 * @return
 	 */
 	public int[] getTotals() {
+		// Return a new reference to encapsulate the data
+		// (otherwise the client could manipulate the data outside this class).
 		return totals.clone();
 	}
 	
@@ -149,10 +153,9 @@ public class DiceStatistics {
 		
 		// Capture statistics for for three Dice of 3, 4, and 5 sides.
 		stats = new DiceStatistics(3);
-		for (int i = 0; i <= 2; i++) {
-			Dice dice = new Dice(i + 3);
-			stats.replaceDice(i, dice);
-		}
+		stats.replaceDice(0, new Dice(3));
+		stats.replaceDice(1, new Dice(4));
+		stats.replaceDice(2, new Dice(5));
 		captureStatistics(stats);
 	}
 	
@@ -166,7 +169,8 @@ public class DiceStatistics {
 	 */
 	private static void captureStatistics(DiceStatistics stats) {
 		// Accumulate statistics
-		for (int i = 0; i < 100_000; i++) {
+		int maximumRollCount = 100_000;
+		for (int i = 0; i < maximumRollCount; i++) {
 			stats.rollOnce();
 		}
 		
