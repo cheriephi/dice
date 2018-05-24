@@ -2,7 +2,7 @@
 // Original Author: Cherié Warren
 // Filename: DiceStatistics.java
 // NOTE: Designed per Homework 3b.
-package edu.du.ict4361.hw3b;
+package edu.du.ict4361.dice;
 
 /**
  * Creates/ replaces Dice, and invokes roll() on it many times.

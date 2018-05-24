@@ -1,4 +1,4 @@
-package edu.du.ict4361.hw3b;
+package edu.du.ict4361.dice;
 
 import java.util.Arrays;
 import java.util.HashMap;

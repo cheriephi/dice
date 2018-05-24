@@ -2,7 +2,7 @@
 // Original Author: Cherié Warren
 // Filename: Dice.java
 // NOTE: Designed per Homework 3.
-package edu.du.ict4361.hw3b;
+package edu.du.ict4361.dice;
 
 import java.util.Random;
 
